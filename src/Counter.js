@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import classnames from "classnames";
+
 //import classnames from "./index.css";
+
+import { Button } from "./bootstrap";
 
 export default class Counter extends Component {
   constructor(props) {
@@ -18,19 +21,19 @@ export default class Counter extends Component {
   }
 
   render() {
-    let className = "";
-
-    if (this.state.counter % 2 === 0) {
-      className = "even";
-    } else {
-      className = "odd";
-    }
+    const even = this.state.counter % 2 === 0;
+    var className = classnames({
+      even: even,
+      odd: !even,
+      modulo3: this.state.counter % 3 === 0,
+      modulo7: this.state.counter % 7 === 0
+    });
 
     return (
       <div className={className}>
         <div>counter : {this.state.counter}</div>
         <br />
-        <button onClick={() => this.increment()}>increment</button>
+        <Button onClick={() => this.increment()}>increment</Button>
       </div>
     );
   }
